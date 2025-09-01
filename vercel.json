@@ -1,38 +1,21 @@
 {
-  "name": "mineru-pdf-parser",
+  "name": "pdf-paper-converter",
   "version": 2,
   "builds": [
     {
-      "src": "app.py",
+      "src": "streamlit_app_vercel.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/app.py"
+      "dest": "/streamlit_app_vercel.py"
     }
   ],
   "env": {
     "STREAMLIT_SERVER_HEADLESS": "true",
     "STREAMLIT_BROWSER_GATHER_USAGE_STATS": "false",
-    "STREAMLIT_SERVER_PORT": "8501",
-    "STREAMLIT_SERVER_ADDRESS": "0.0.0.0",
-    "HF_ENDPOINT": "https://hf-mirror.com",
-    "PYTHONPATH": "/var/task"
-  },
-  "functions": {
-    "app.py": {
-      "maxDuration": 300,
-      "memory": 3008
-    }
-  },
-  "regions": ["hkg1", "sin1", "sfo1"],
-  "github": {
-    "autoDeployments": true
+    "HF_ENDPOINT": "https://hf-mirror.com"
   }
 }
